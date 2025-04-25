@@ -15,56 +15,7 @@
 
 <button onclick="window.print()"  id ="pageprint" >Print this page</button>
   
-  
-  <script>
-function updateLockButton() {
-  const lockButton = document.getElementById("button");
-  const newOrientation = getOppositeOrientation();
-  lockButton.textContent = `Lock to ${newOrientation}`;
-}
-
-function getOppositeOrientation() {
-  return screen
-    .orientation
-    .type
-    .startsWith("portrait") ? "landscape" : "portrait";
-}
-
-async function rotate(lockButton) {
-  if (!document.fullscreenElement) {
-    await document.documentElement.requestFullscreen();
-  }
-  const newOrientation = getOppositeOrientation();
-  await screen.orientation.lock(newOrientation);
-  updateLockButton(lockButton);
-}
-
-screen.orientation.addEventListener("change", updateLockButton);
-
-window.addEventListener("load", updateLockButton);
-</script>
-
 <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
-
-<style>
-#container2 {
-    
-    place-content: center;
-
-  }
-
-  #container {
-    
-    display: grid;
-    place-content: center;
-
-  }
-
-</style>
-
-  
-  
-  
 <script src="swfobject.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -95,19 +46,5 @@ window.addEventListener("load", updateLockButton);
 
    </object></object></div>
  
-  <script>
-var elem = document.getElementById("container");
-function openFullscreen() {
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) { /* Safari */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { /* IE11 */
-    elem.msRequestFullscreen();
-  }
-}
-</script>
-
-
 </body>
 </html>
