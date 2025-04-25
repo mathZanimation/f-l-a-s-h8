@@ -1,10 +1,14 @@
 <style type="text/css">
-  
+  @media print
     {
       #pageprint
       {
         display: none;
+        
+        
       }
+      
+      
   }
 </style>
 <html>
@@ -13,13 +17,66 @@
 <p id ="pageprint">Click the button to print the current page.</p>
 
 <button onclick="window.print()"  id ="pageprint" >Print this page</button>
-  <div></div>
+  
+  
+  <script>
+function updateLockButton() {
+  const lockButton = document.getElementById("button");
+  const newOrientation = getOppositeOrientation();
+  lockButton.textContent = `Lock to ${newOrientation}`;
+}
+
+function getOppositeOrientation() {
+  return screen
+    .orientation
+    .type
+    .startsWith("portrait") ? "landscape" : "portrait";
+}
+
+async function rotate(lockButton) {
+  if (!document.fullscreenElement) {
+    await document.documentElement.requestFullscreen();
+  }
+  const newOrientation = getOppositeOrientation();
+  await screen.orientation.lock(newOrientation);
+  updateLockButton(lockButton);
+}
+
+screen.orientation.addEventListener("change", updateLockButton);
+
+window.addEventListener("load", updateLockButton);
+</script>
 
 
+
+<style>
+#container2 {
+    
+    place-content: center;
+
+  }
+
+  #container {
+    
+    display: grid;
+    place-content: center;
+
+  }
+
+</style>
+
+  
+  
+  
 <script src="swfobject.js" type="text/javascript"></script>
+
 <script type="text/javascript">
-swfobject.registerObject("myFlashContent", "9.0.0"); 
+			swfobject.registerObject("myFlashContent", "9.0.0");
+ 
 </script>.
+
+
+
 <object align="left" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" height="1015" id="myFlashContent" width="840">
 				<param name="movie" value="https://mathzanimation.github.io/f-l-a-s-h8/coba%20print%20button%20worksheet%20sukses%20masya%20Allah.swf"/>
 				<param name="play" value="true" />
@@ -29,8 +86,7 @@ swfobject.registerObject("myFlashContent", "9.0.0");
 				<param name="wmode" value="window" />
 				<param name="allowfullscreen" value="true" />
 				<!--[if !IE]>-->
-				<object align="left" data="https://mathzanimation.github.io/f-l-a-s-h8/coba%20print%20button%20worksheet%20sukses%20masya%20Allah.swf" height="1015" 
-					type="application/x-shockwave-flash" width="840">
+				<object align="left" data="https://mathzanimation.github.io/f-l-a-s-h8/coba%20print%20button%20worksheet%20sukses%20masya%20Allah.swf" height="1015" type="application/x-shockwave-flash" width="840">
 					<param name="play" value="true" />
 					<param name="menu" value="true" />
 					<param name="quality" value="best" />
@@ -39,6 +95,21 @@ swfobject.registerObject("myFlashContent", "9.0.0");
 					<param name="allowfullscreen" value="true" />
 				<!--<![endif]-->
 
-   </object></object>
+   </object></object></div>
+ 
+  <script>
+var elem = document.getElementById("container");
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+</script>
+
+
 </body>
 </html>
